@@ -1,0 +1,30 @@
+.loaderCont {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background-color: rgb(15, 15, 15);
+    display: grid;
+    place-content: center;
+    transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out,
+      transform 0.5s ease-in-out;
+      
+  }
+  #loader{
+    text-transform: uppercase;
+    font-size: clamp(1.2em,1vw,1.5em);
+  }
+  .loaderCont.Hidden-loader {
+    opacity: 0;
+    visibility: 0;
+    transform: translate3d(0, 100vh, 0);
+    pointer-events: none;
+  }
+  .main {
+    display: none;
+    pointer-events: none;
+  }
+  .main.Visble-main {
+    opacity: 1;
+    pointer-events: auto;
+    display: flex;
+  }

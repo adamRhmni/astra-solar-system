@@ -1,0 +1,234 @@
+@font-face {
+  font-family: "Orbitron";
+  src: url("/public/font/Orbitron/Orbitron-VariableFont_wght.ttf")
+    format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Exo";
+  src: url("/public/font/Exo/Exo-VariableFont_wght.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Exo";
+  src: url("/public/font/Exo/Exo-Italic-VariableFont_wght.ttf")
+    format("truetype");
+  font-weight: normal;
+  font-style: italic;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: rgb(128, 139, 115);
+  --main-color: #d3d3d3;
+}
+body {
+  overflow: hidden;
+  font-family: 'Exo',Arial;
+}
+.model {
+  position: fixed;
+  width: 100vw;
+  height: 100dvh;
+
+  canvas {
+    height: 100%;
+    width: 100%;
+  }
+
+  inset: 0;
+}
+header {
+  position: fixed;
+  display: flex;
+  top: 0;
+  left: 0;
+  right: 0;
+  justify-content: space-between;
+  align-items: center;
+  height: 3rem;
+  z-index: 20;
+}
+.header-list {
+  list-style: none;
+  display: flex;
+  justify-content: space-evenly;
+  width: 50%;
+}
+.header-items {
+  font-size: clamp(1.1em, 1vw, 1.4em);
+  text-transform: uppercase;
+  position: relative;
+  color: var(--main-color);
+  font-family: "Exo";
+  transition: color 0.3s ease-in-out;
+}
+.header-items:hover {
+  color: #9370db;
+
+  cursor: pointer;
+}
+
+#logo {
+  font-size: clamp(1.1em, 1vw, 1.4em);
+  text-transform: uppercase;
+  font-weight: 600;
+  display: grid;
+  place-content: center;
+  width: 10%;
+  padding-left: 5rem;
+  font-family: "Orbitron";
+  cursor: pointer;
+}
+
+.main2 {
+  position: relative;
+  height: 100dvh;
+  width: 100vw;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  pointer-events: none;
+}
+.borders-title {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-evenly;
+  width: 50%;
+  height: 4rem;
+  align-items: center;
+  h2 {
+    font-size: clamp(1.3rem, 2vw, 1.5rem);
+    text-transform: uppercase;
+    border: 1px solid var(--main-color);
+    border-radius: 5em;
+    padding: 0.2em 0.9em;
+    font-weight: 500;
+    font-family: "Exo";
+  }
+  transition: opacity 200ms ease-in-out, transform 200ms ease-in-out;
+}
+#typing-text {
+  font-size: clamp(2.5em, 3vw, 3.3em);
+  padding: 1em 2em;
+  padding-right: 0;
+  color: var(--main-color);
+  font-family: "Orbitron";
+  text-transform: uppercase;
+}
+.typing-text {
+  display: flex;
+  transition: opacity 200ms ease-in-out, transform 200ms ease-in-out;
+}
+
+.main.down {
+  .typing-text {
+    transform: translate3d(0, 2rem, 0);
+    opacity: 0;
+  }
+  .borders-title {
+    transform: translate3d(0, 2rem, 0);
+    opacity: 0;
+  }
+}
+@media screen and (max-width: 760px) {
+  .borders-title {
+    width: 100%;
+  }
+  .main2 {
+    align-items: center;
+    justify-content: center;
+  }
+  #typing-text {
+    padding: 0 0;
+  }
+  .header-items:nth-child(1) {
+    display: none;
+  }
+  .header-list {
+    width: 70%;
+  }
+}
+#cursor {
+  align-self: center;
+
+  width: 7px;
+  height: clamp(3em, 5vw, 4em);
+  background-color: var(--main-color);
+}
+#muted-play {
+  width: 20px;
+  height: 20px;
+  border-radius: 9999px;
+  background-color: var(--main-color);
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 700;
+}
+/* .contact-cont {
+  position: fixed;
+  z-index: 800;
+  width: 80vw;
+  height: 50vh;
+backdrop-filter: grayscale(100) blur(3px);
+border: 1px solid #9370db;
+border-bottom: 2px double #9370db ;
+
+   
+  right: 10%;
+  top: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.contact-cont-items {
+width: 100%;
+display: flex;
+height: 100%;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+gap: 10%;
+
+  a {
+    text-decoration: none;
+    font-size: clamp(1.5em, 2vw, 3em);
+    text-transform: uppercase;
+    transition: color 0.3s ease-in-out;
+    font-weight: 600;
+    &:hover {
+      color: #9370db;
+    }
+  }
+} */
+/* .Fill-contact{
+    position: fixed;
+    inset: 0;
+    z-index: 799;
+    backdrop-filter: blur(1px);
+    width: 100vw;
+    height: 100dvh;
+  
+    opacity: 0;
+    pointer-events: none;
+}
+.visble-fill{
+    opacity: 1;
+    
+}
+
+.visble-contact{
+    opacity: 0;
+    
+    
+} */
