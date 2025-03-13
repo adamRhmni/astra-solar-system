@@ -4,42 +4,71 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>astra-Solar System</title>
-    <link rel="icon" href="icon.jpg" style="border-radius: 50%;">
-    <meta name="description" content="Astra - Solar System project by adam rhmni" />
-    <meta name="keywords" content="Astra, Solar System, Three.js, GSAP, GLSL, Web Development" />
-    <script type="module" crossorigin src="/astra-solar-system/assets/index-DC-RM38d.js"></script>
-    <link rel="stylesheet" crossorigin href="/astra-solar-system/assets/index-BUvYUQd9.css">
+    <link rel="icon" href="icon.jpg" />
+    <meta
+      name="description"
+      content="Astra - Solar System project by adam rhmni"
+    />
+    <meta
+      name="keywords"
+      content="Astra, Solar System, Three.js, GSAP, GLSL, Web Development, Space, Earth, Planets, GitHub, JavaScript, Animation, 3D, Astronomy, Universe, Stars, Galaxy, Space Exploration, Science, Technology"
+    />
+    <meta name="author" content="Adam Rhmni" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#9370db" />
+    <meta property="og:title" content="Astra - Solar System" />
+    <meta property="og:description" content="Explore the Solar System with Astra, a project by Adam Rhmni." />
+    <meta property="og:image" content="https://github.com/adamRhmni/public/icon.jpg" />
+    <meta property="og:url" content="https://github.com/adamRhmni" />
+    <meta name="twitter:card" content="https://github.com/adamRhmni/public/icon.jpg" />
+    <meta name="twitter:title" content="Astra - Solar System" />
+    <meta name="twitter:description" content="Explore the Solar System with Astra, a project by Adam Rhmni." />
+    <meta name="twitter:image" content="https://github.com/adamRhmni/public/icon.jpg" />
+
+    <script type="module" crossorigin src="/astra-solar-system/assets/index-vlcGkxdS.js"></script>
+    <link rel="stylesheet" crossorigin href="/astra-solar-system/assets/index-B72NzJk6.css">
   </head>
   <body>
     <div class="loaderCont">
       <div id="loader">Loading</div>
     </div>
-    <div id="muted-play"></div><div class="Fill-contact"></div>
+    <div id="muted-play"></div>
+    <div class="Fill-contact"></div>
     <div class="contact-cont">
       <div class="contact-cont-items">
-        <a href="https://www.instagram.com/adam_rhmnii/" target="_blank">instgram</a>
+        <a href="https://www.instagram.com/adam_rhmnii/" target="_blank"
+          >instgram</a
+        >
         <a href="https://github.com/adamRhmni" target="_blank">githup</a>
       </div>
     </div>
     <div class="main">
       <div class="model"></div>
-     
+
       <header>
         <div id="logo">Astra</div>
         <ul class="header-list">
-          <li class="header-items" >Home</li>
+          <li class="header-items">Home</li>
           <li class="header-items" id="undefined-item">projects</li>
           <li class="header-items" id="contact-button">contact</li>
         </ul>
       </header>
       <section class="main2">
         <div class="typing-text">
-          <span class="cursur-typing"><span id="typing-text"></span><span id="cursor"></span></span>
+          <span class="cursur-typing"
+            ><span id="typing-text"></span><span id="cursor"></span
+          ></span>
         </div>
         <div class="borders-title">
-            <h2 class="planetsSelect">Earth</h2>
-            <h2 class="planetsSelect">Mars</h2>
-            <h2 class="planetsSelect">Jupiter</h2>
+            <label class="planetsSelect">
+            <input type="radio" name="planet" value="Earth" class="selected-input" />Earth
+            </label>
+            <label class="planetsSelect">
+            <input type="radio" name="planet" value="Mars" class="selected-input" />Mars
+            </label>
+            <label class="planetsSelect">
+            <input type="radio" name="planet" value="Jupiter" class="selected-input" />Jupiter
+            </label>
         </div>
       </section>
     </div>
