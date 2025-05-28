@@ -17,20 +17,45 @@
     <meta name="robots" content="index, follow" />
     <meta name="theme-color" content="#9370db" />
     <meta property="og:title" content="Astra - Solar System" />
-    <meta property="og:description" content="Explore the Solar System with Astra, by Adam Rhmni." />
-    <meta property="og:image" content="https://adamrhmni.github.io/astra-solar-system/bg.jpg" />
-    <meta property="og:url" content="https://adamrhmni.github.io/astra-solar-system" />
-    <meta name="twitter:card" content="https://adamrhmni.github.io/astra-solar-system/bg.jpg" />
+    <meta
+      property="og:description"
+      content="Explore the Solar System with Astra, by Adam Rhmni."
+    />
+    <meta
+      property="og:image"
+      content="https://adamrhmni.github.io/astra-solar-system/bg.jpg"
+    />
+    <meta
+      property="og:url"
+      content="https://adamrhmni.github.io/astra-solar-system"
+    />
+    <meta
+      name="twitter:card"
+      content="https://adamrhmni.github.io/astra-solar-system/bg.jpg"
+    />
     <meta name="twitter:title" content="Astra - Solar System" />
-    <meta name="twitter:description" content="Explore the Solar System with Astra, a project by Adam Rhmni." />
-    <meta name="twitter:image" content="https://adamrhmni.github.io/astra-solar-system/bg.jpg" />
-
-    <script type="module" crossorigin src="/astra-solar-system/assets/index-hR0Bl4SC.js"></script>
-    <link rel="stylesheet" crossorigin href="/astra-solar-system/assets/index-BGvMLNPD.css">
+    <meta
+      name="twitter:description"
+      content="Explore the Solar System with Astra, a project by Adam Rhmni."
+    />
+    <meta
+      name="twitter:image"
+      content="https://adamrhmni.github.io/astra-solar-system/bg.jpg"
+    />
+
+    <link rel="stylesheet" href="src/styles/main.css" />
+    <link rel="stylesheet" href="src/styles/loader.css" />
   </head>
   <body>
     <div class="loaderCont">
-      <div id="loader">Loading</div>
+      <div id="loader">
+        Loading
+        <span id="dots">
+          <span class="dot dot1"></span>
+          <span class="dot dot2"></span>
+          <span class="dot dot3"></span>
+        </span>
+      </div>
     </div>
     <div id="muted-play"></div>
     <div class="Fill-contact"></div>
@@ -44,9 +69,8 @@
     </div>
     <div class="main">
       <div class="model"></div>
-
       <header>
-        <div id="logo">Astra</div>
+        <div id="logo">NEX</div>
         <ul class="header-list">
           <li class="header-items">Home</li>
           <li class="header-items" id="undefined-item">projects</li>
@@ -60,17 +84,33 @@
           ></span>
         </div>
         <div class="borders-title">
-            <label class="planetsSelect">
-            <input type="radio" name="planet" value="Earth" class="selected-input" />Earth
-            </label>
-            <label class="planetsSelect">
-            <input type="radio" name="planet" value="Mars" class="selected-input" />Mars
-            </label>
-            <label class="planetsSelect">
-            <input type="radio" name="planet" value="Jupiter" class="selected-input" />Jupiter
-            </label>
+          <label class="planetsSelect">
+            <input
+              type="radio"
+              name="planet"
+              value="Earth"
+              class="selected-input"
+            />Earth
+          </label>
+          <label class="planetsSelect">
+            <input
+              type="radio"
+              name="planet"
+              value="Mars"
+              class="selected-input"
+            />Mars
+          </label>
+          <label class="planetsSelect">
+            <input
+              type="radio"
+              name="planet"
+              value="Jupiter"
+              class="selected-input"
+            />Jupiter
+          </label>
         </div>
       </section>
     </div>
-  </body>
+  </body>
+  <script src="src/script/render.js" type="module"></script>
 </html>
