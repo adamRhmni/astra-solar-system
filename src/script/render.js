@@ -10,8 +10,8 @@ import { RGBShiftShader } from "three/examples/jsm/shaders/RGBShiftShader.js";
 import { VignetteShader } from "three/examples/jsm/shaders/VignetteShader.js";
 import { DeviceOrientationControls } from "three/examples/jsm/controls/DeviceOrientationControls.js";
 
-
 import GSAP from "gsap";
+
 import { TextPlugin } from "gsap/TextPlugin";
 const manager = new THREE.LoadingManager();
 GSAP.registerPlugin(TextPlugin);
@@ -23,9 +23,6 @@ const soundEnter = new THREE.Audio(listener);
 const soundAcces = new THREE.Audio(listener);
 const soundleft = new THREE.Audio(listener);
 const audioLoader = new THREE.AudioLoader(manager);
-
-
-
 
 const textureloader = new THREE.TextureLoader(manager);
 const Mercurytu = textureloader.load("taxtures/mercury.jpg");
@@ -40,9 +37,14 @@ const cubeTextureLoader = new THREE.CubeTextureLoader(manager);
 
 cubeTextureLoader.setPath("taxtures/milkey-way/"); // Ensure correct folder name and path
 
-const bgCUBE = cubeTextureLoader.load(
-  ["px.png", "nx.png", "py.png", "ny.png", "pz.png", "nz.png"]
-);
+const bgCUBE = cubeTextureLoader.load([
+  "px.png",
+  "nx.png",
+  "py.png",
+  "ny.png",
+  "pz.png",
+  "nz.png",
+]);
 
 scene.background = bgCUBE;
 
@@ -211,9 +213,6 @@ vignettePass.uniforms["darkness"].value = 1; // More pronounced vignette
 vignettePass.uniforms["offset"].value = 0.2; // Adjust offset for vignette effect
 composer.addPass(vignettePass);
 
-
-
-
 let activeControls = orbitControls;
 
 // Handle gyroscope permission (iOS)
@@ -254,9 +253,6 @@ if (
   deviceControls.connect();
   activeControls = deviceControls;
 }
-
-
-
 
 const positionalSound = new THREE.PositionalAudio(listener);
 audioLoader.load("sounds/sun.mp3", function (buffer) {
@@ -355,7 +351,6 @@ scene.add(lightsun);
 // TODO 120
 const asteroidCount = 1;
 
-
 // add rockets
 const asteroidBelt = new THREE.Group();
 const aseColorsb = [
@@ -367,16 +362,16 @@ const aseColorsb = [
 ];
 for (let i = 0; i < asteroidCount; i++) {
   const asteroidMaterial = new THREE.MeshStandardMaterial({
-      color: aseColorsb[THREE.MathUtils.randInt(0, aseColorsb.length - 1)],
-    });
-    const widthSegments = Math.floor(Math.random() * 5) + 3; // 4–8
-    const heightSegments = Math.floor(Math.random() * 5) + 3; // 4–8
-  
-    const asteroidGeometry = new THREE.SphereGeometry(
-      THREE.MathUtils.randFloat(0.1, 0.3),
-      widthSegments,
-      heightSegments
-    );
+    color: aseColorsb[THREE.MathUtils.randInt(0, aseColorsb.length - 1)],
+  });
+  const widthSegments = Math.floor(Math.random() * 5) + 3; // 4–8
+  const heightSegments = Math.floor(Math.random() * 5) + 3; // 4–8
+
+  const asteroidGeometry = new THREE.SphereGeometry(
+    THREE.MathUtils.randFloat(0.1, 0.3),
+    widthSegments,
+    heightSegments
+  );
   const asteroid = new THREE.Mesh(asteroidGeometry, asteroidMaterial);
 
   // Random position in orbit
@@ -440,7 +435,6 @@ function onWindowResize() {
   composer.setSize(window.innerWidth, window.innerHeight);
 }
 window.addEventListener("resize", onWindowResize);
-
 
 audioLoader.load("sounds/left-page.mp3", function (buffer) {
   soundleft.setBuffer(buffer);
@@ -535,7 +529,7 @@ function animate() {
     // sun2.rotation.y += 0.1;
     // sun2.rotation.z += 0.1;
     if (selectedplanet === PLANETS[index].name) {
-      let planetPosition = planet.position.clone()
+      let planetPosition = planet.position.clone();
 
       orbitControls.target = planetPosition;
 
@@ -574,9 +568,9 @@ function animate() {
     asteroid.rotation.y += 0.006 * Math.random();
   });
   composer.render();
-//  activeorbitControls.update();
-//  orbitControls.update();
-if (activeControls) activeControls.update();
+  //  activeorbitControls.update();
+  //  orbitControls.update();
+  if (activeControls) activeControls.update();
 
   requestAnimationFrame(animate);
 }
@@ -687,7 +681,7 @@ document.getElementById("muted-play").addEventListener("click", () => {
 
 manager.onStart = (url, itemsLoaded, itemsTotal) => {
   document.body.style.cursor = "wait";
-}
+};
 manager.onLoad = () => {
   document.body.style.cursor = "pointer";
 
@@ -770,9 +764,7 @@ manager.onLoad = () => {
 
     cursor.play();
   });
-  
 };
-
 
 const contact_cont = document.querySelector(".contact-cont");
 const Fill_contact = document.querySelector(".Fill-contact");
