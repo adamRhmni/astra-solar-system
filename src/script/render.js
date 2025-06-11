@@ -8,6 +8,8 @@ import { ShaderPass } from "three/examples/jsm/postprocessing/ShaderPass.js";
 import { GammaCorrectionShader } from "three/examples/jsm/shaders/GammaCorrectionShader.js";
 import { RGBShiftShader } from "three/examples/jsm/shaders/RGBShiftShader.js";
 import { VignetteShader } from "three/examples/jsm/shaders/VignetteShader.js";
+import { DeviceOrientationControls } from "three/examples/jsm/controls/DeviceOrientationControls.js";
+
 
 import GSAP from "gsap";
 import { TextPlugin } from "gsap/TextPlugin";
@@ -166,7 +168,13 @@ const camera = new THREE.PerspectiveCamera(
 camera.add(listener);
 const renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.outputEncoding = THREE.sRGBEncoding;
-const controls = new OrbitControls(camera, renderer.domElement);
+const orbitControls = new OrbitControls(camera, renderer.domElement);
+orbitControls.enableDamping = true;
+orbitControls.dampingFactor = 0.03;
+orbitControls.minDistance = 8;
+orbitControls.maxDistance = 55;
+orbitControls.zoomToCursor = true;
+orbitControls.enablePan = false;
 camera.position.z = 20;
 camera.position.y = 20;
 const maxpexilratio = Math.min(window.devicePixelRatio, 2);
@@ -202,6 +210,53 @@ const vignettePass = new ShaderPass(VignetteShader);
 vignettePass.uniforms["darkness"].value = 1; // More pronounced vignette
 vignettePass.uniforms["offset"].value = 0.2; // Adjust offset for vignette effect
 composer.addPass(vignettePass);
+
+
+
+
+let activeControls = orbitControls;
+
+// Handle gyroscope permission (iOS)
+if (
+  typeof DeviceOrientationEvent !== "undefined" &&
+  typeof DeviceOrientationEvent.requestPermission === "function"
+) {
+  const gyroButton = document.createElement("button");
+  gyroButton.innerText = "Enable Gyroscope";
+  gyroButton.style.cssText = `
+    position:fixed;
+    top:20px;
+    left:20px;
+    z-index:9999;
+    background-color:#f80000;
+    color:white;
+    border:none;
+    border-radius:8px;
+    padding:10px;
+    font-size:14px;
+    cursor:pointer
+  `;
+  document.body.appendChild(gyroButton);
+
+  gyroButton.addEventListener("click", () => {
+    DeviceOrientationEvent.requestPermission().then((response) => {
+      if (response === "granted") {
+        const deviceControls = new DeviceOrientationControls(camera);
+        deviceControls.connect();
+        activeControls = deviceControls;
+        gyroButton.remove();
+      }
+    });
+  });
+} else {
+  // Android or other browsers
+  const deviceControls = new DeviceOrientationControls(camera);
+  deviceControls.connect();
+  activeControls = deviceControls;
+}
+
+
+
 
 const positionalSound = new THREE.PositionalAudio(listener);
 audioLoader.load("sounds/sun.mp3", function (buffer) {
@@ -297,8 +352,8 @@ const planetsMeshs = PLANETS.map((planet) => {
 const lightsun = new THREE.PointLight(0xffffff, 1);
 lightsun.position.set(0, 0, 0); // Center it at the sun
 scene.add(lightsun);
-// TODO
-const asteroidCount = 120;
+// TODO 120
+const asteroidCount = 1;
 
 
 // add rockets
@@ -341,7 +396,8 @@ for (let i = 0; i < asteroidCount; i++) {
 // Add the asteroid belt to the scene
 scene.add(asteroidBelt);
 // TODO
-const asteroid2Count = 110;
+// TODO 110
+const asteroid2Count = 1;
 
 // add rockets
 const asteroid2Belt = new THREE.Group();
@@ -384,12 +440,7 @@ function onWindowResize() {
   composer.setSize(window.innerWidth, window.innerHeight);
 }
 window.addEventListener("resize", onWindowResize);
-controls.enableDamping = true;
-controls.dampingFactor = 0.03;
-controls.minDistance = 8;
-controls.maxDistance = 55;
-controls.zoomToCursor = true;
-controls.enablePan = false;
+
 
 audioLoader.load("sounds/left-page.mp3", function (buffer) {
   soundleft.setBuffer(buffer);
@@ -432,11 +483,11 @@ planetsSelectList.forEach((select) => {
     if (selectedplanet === select.value) {
       selectedplanet = NaN;
       select.checked = false;
-      controls.target = new THREE.Vector3(0, 0, 0);
-      controls.minDistance = 5;
+      orbitControls.target = new THREE.Vector3(0, 0, 0);
+      orbitControls.minDistance = 5;
       camera.position.z = 20;
       camera.position.y = 20;
-      controls.maxDistance = 55;
+      orbitControls.maxDistance = 55;
       GSAP.to("#typing-text", {
         duration: 2,
         text: { value: "SOlar system !", delimiter: "" },
@@ -453,10 +504,10 @@ planetsSelectList.forEach((select) => {
       });
     } else {
       selectedplanet = select.value;
-      controls.minDistance = 3;
+      orbitControls.minDistance = 3;
       camera.position.z = 5;
       camera.position.y = 5;
-      controls.maxDistance = 10;
+      orbitControls.maxDistance = 10;
       GSAP.to("#typing-text", {
         duration: 2,
         text: { value: select.value, delimiter: "" },
@@ -484,9 +535,11 @@ function animate() {
     // sun2.rotation.y += 0.1;
     // sun2.rotation.z += 0.1;
     if (selectedplanet === PLANETS[index].name) {
-      let planetPosition = planet.position.clone();
+      let planetPosition = planet.position.clone()
 
-      controls.target = planetPosition;
+      orbitControls.target = planetPosition;
+
+      camera.position.lerp(planetPosition, 0.001);
       // Smooth transition
       // GSAP.to(camera.position, {
       //   x: cameraPosition.x,
@@ -521,7 +574,10 @@ function animate() {
     asteroid.rotation.y += 0.006 * Math.random();
   });
   composer.render();
-  controls.update();
+//  activeorbitControls.update();
+//  orbitControls.update();
+if (activeControls) activeControls.update();
+
   requestAnimationFrame(animate);
 }
 animate();
