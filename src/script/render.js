@@ -226,12 +226,12 @@ if (
     position:fixed;
     top:20px;
     left:20px;
-    z-index:9999;
+    z-index:99999;
     background-color:#f80000;
     color:white;
     border:none;
     border-radius:8px;
-    padding:10px;
+    padding:20px;
     font-size:14px;
     cursor:pointer
   `;
@@ -253,6 +253,7 @@ if (
   deviceControls.connect();
   activeControls = deviceControls;
 }
+activeControls = deviceControls;
 
 const positionalSound = new THREE.PositionalAudio(listener);
 audioLoader.load("sounds/sun.mp3", function (buffer) {
