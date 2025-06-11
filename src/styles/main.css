@@ -1,6 +1,6 @@
 @font-face {
   font-family: "Orbitron";
-  src: url("/public/font/Orbitron/Orbitron-VariableFont_wght.ttf")
+  src: url("/font/Orbitron/Orbitron-VariableFont_wght.ttf")
     format("truetype");
   font-weight: normal;
   font-style: normal;
@@ -8,7 +8,7 @@
 
 @font-face {
   font-family: "Exo";
-  src: url("/public/font/Exo/Exo-VariableFont_wght.ttf") format("truetype");
+  src: url("/font/Exo/Exo-VariableFont_wght.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
@@ -54,6 +54,7 @@ header {
   align-items: center;
   height: 3rem;
   z-index: 20;
+  pointer-events: auto;
 }
 .header-list {
   list-style: none;
@@ -72,7 +73,7 @@ header {
 .header-items:hover {
   color: #9370db;
 
-  cursor: pointer;
+  cursor:pointer;
 }
 
 #logo {
@@ -106,7 +107,8 @@ header {
   width: 50%;
   height: 4rem;
   align-items: center;
-  h2 {
+  pointer-events: all;
+  label {
     font-size: clamp(1.3rem, 2vw, 1.5rem);
     text-transform: uppercase;
     border: 1px solid var(--main-color);
@@ -114,56 +116,46 @@ header {
     padding: 0.2em 0.9em;
     font-weight: 500;
     font-family: "Exo";
+    
+    cursor: pointer;
+    input{
+      appearance: none;
+    }
+    
   }
-  transition: opacity 200ms ease-in-out, transform 200ms ease-in-out;
+  transition: opacity 400ms ease-in-out,border 200ms ease-in-out,color 200ms ease-in-out;
 }
+.planetsSelect:has(:checked){
+  color: #9370db;
+}
+
+
 #typing-text {
   font-size: clamp(2.5em, 3vw, 3.3em);
   padding: 1em 2em;
   padding-right: 0;
+  letter-spacing:-0.03rem;
   color: var(--main-color);
   font-family: "Orbitron";
   text-transform: uppercase;
+  display: inline-block;
+  
 }
 .typing-text {
   display: flex;
-  transition: opacity 200ms ease-in-out, transform 200ms ease-in-out;
+  transition: opacity 400ms ease-in-out;
+  padding-top: 20vh;
 }
 
 .main.down {
   .typing-text {
-    transform: translate3d(0, 2rem, 0);
+    
     opacity: 0;
   }
   .borders-title {
-    transform: translate3d(0, 2rem, 0);
+    
     opacity: 0;
   }
-}
-@media screen and (max-width: 760px) {
-  .borders-title {
-    width: 100%;
-  }
-  .main2 {
-    align-items: center;
-    justify-content: center;
-  }
-  #typing-text {
-    padding: 0 0;
-  }
-  .header-items:nth-child(1) {
-    display: none;
-  }
-  .header-list {
-    width: 70%;
-  }
-}
-#cursor {
-  align-self: center;
-
-  width: 7px;
-  height: clamp(3em, 5vw, 4em);
-  background-color: var(--main-color);
 }
 #muted-play {
   width: 20px;
@@ -175,21 +167,57 @@ header {
   right: 2rem;
   z-index: 700;
 }
-/* .contact-cont {
+@media screen and (max-width: 760px) {
+  .borders-title {
+    width: 100%;
+  }
+  .main2 {
+    align-items: flex-start;
+    justify-content: center;
+  }
+  #typing-text {
+    padding: 0 0;
+  }
+  .header-items:nth-child(1) {
+    display: none;
+  }
+  .header-list {
+    width: 70%;
+  }
+  #muted-play {
+    bottom: 5rem;
+  }
+}
+#cursor {
+  align-self: center;
+
+  width: 7px;
+  height: clamp(3em, 5vw, 4em);
+  background-color: var(--main-color);
+}
+.cursur-typing{
+  display: flex;
+}
+
+.contact-cont {
   position: fixed;
   z-index: 800;
   width: 80vw;
   height: 50vh;
 backdrop-filter: grayscale(100) blur(3px);
 border: 1px solid #9370db;
-border-bottom: 2px double #9370db ;
 
-   
+opacity: 0;
+   pointer-events: none;
   right: 10%;
   top: 20%;
   display: flex;
   justify-content: center;
   align-items: center;
+  transform: scale(0.7);
+  transform: scaleX(0.3);
+  visibility: 0;
+  transition:transform 100ms ease-in-out,opacity 200ms ease-in-out,visibility 200ms ease-in-out ;
 }
 .contact-cont-items {
 width: 100%;
@@ -210,25 +238,31 @@ gap: 10%;
       color: #9370db;
     }
   }
-} */
-/* .Fill-contact{
+} 
+ .Fill-contact{
     position: fixed;
     inset: 0;
     z-index: 799;
     backdrop-filter: blur(1px);
     width: 100vw;
     height: 100dvh;
-  
-    opacity: 0;
     pointer-events: none;
+    opacity: 0;
+    visibility: 0;
+    transform: opacity 100ms;
+    
 }
 .visble-fill{
+  pointer-events: all;
     opacity: 1;
-    
+    visibility: 1;
 }
 
 .visble-contact{
-    opacity: 0;
+    opacity: 1;
+    pointer-events: all;
+    transform: scale(1);
+    transform: scaleX(1);
+    visibility: 1;
     
-    
-} */
+}
